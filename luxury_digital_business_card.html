@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shady Hamza | Hamza Motors - Digital Business Card</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & Playfair Display for luxury feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            900: '#080D17',
+                            800: '#101B2C',
+                            700: '#1A2942',
+                        },
+                        gold: {
+                            light: '#F1D69A',
+                            DEFAULT: '#D4AF6A',
+                            dark: '#A37F38',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #080D17;
+            font-family: 'Inter', sans-serif;
+            color: #E2E8F0;
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #F1D69A 0%, #D4AF6A 50%, #A37F38 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-border-gradient {
+            border-image: linear-gradient(to bottom right, #F1D69A, #D4AF6A, #A37F38) 1;
+        }
+        .gold-button {
+            background: linear-gradient(135deg, #D4AF6A 0%, #A37F38 100%);
+            color: #080D17;
+            transition: all 0.3s ease;
+        }
+        .gold-button:hover {
+            background: linear-gradient(135deg, #F1D69A 0%, #D4AF6A 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(212, 175, 106, 0.25);
+        }
+        .glass-card {
+            background: rgba(16, 27, 44, 0.75);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 106, 0.2);
+        }
+        .custom-shadow {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 15px rgba(212, 175, 106, 0.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-3 sm:p-6 antialiased">
+
+    <!-- Toast Notification Message Box -->
+    <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 transform -translate-y-20 opacity-0 transition-all duration-300 bg-gold text-navy-900 px-6 py-3 rounded-full font-semibold shadow-lg flex items-center gap-2 pointer-events-none">
+        <i id="toast-icon" class="fas fa-check-circle"></i>
+        <span id="toast-msg">Copied to clipboard!</span>
+    </div>
+
+    <!-- Main Container -->
+    <div class="w-full max-w-md mx-auto">
+        
+        <!-- Card Frame -->
+        <div class="glass-card rounded-3xl custom-shadow overflow-hidden relative border border-gold/30">
+            
+            <!-- Top Banner Decorative Pattern -->
+            <div class="h-32 bg-gradient-to-r from-navy-900 via-navy-800 to-navy-900 relative border-b border-gold/20 flex items-center justify-center overflow-hidden">
+                <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#D4AF6A_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                <!-- Company Name Badge -->
+                <div class="tracking-widest uppercase text-xs font-semibold text-gold/80 bg-navy-900/80 px-4 py-1.5 rounded-full border border-gold/30">
+                    Luxury Automotive Specialist
+                </div>
+            </div>
+
+            <!-- Profile Header Section -->
+            <div class="px-6 pt-0 pb-6 text-center relative">
+                
+                <!-- HM Monogram Avatar -->
+                <div class="relative -mt-16 mb-4 inline-block">
+                    <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-gradient-to-br from-gold-light via-gold to-gold-dark p-[2px] shadow-2xl mx-auto">
+                        <div class="w-full h-full bg-navy-900 rounded-full flex items-center justify-center relative overflow-hidden">
+                            <span class="font-serif font-bold text-3xl sm:text-4xl gold-gradient-text tracking-tighter">HM</span>
+                        </div>
+                    </div>
+                    <!-- Active Status Badge -->
+                    <div class="absolute bottom-1 right-1 bg-emerald-500 w-5 h-5 rounded-full border-2 border-navy-900" title="Available"></div>
+                </div>
+
+                <!-- Client Info -->
+                <h1 id="card-name" class="font-serif text-2xl sm:text-3xl font-bold text-white tracking-wide">Shady Hamza</h1>
+                <p id="card-title" class="text-gold font-medium text-sm sm:text-base mt-1">Car Dealership Manager</p>
+                <p id="card-company" class="text-slate-400 text-xs sm:text-sm font-semibold tracking-wider uppercase mt-0.5">Hamza Motors</p>
+
+                <!-- Tagline / Bio -->
+                <p id="card-bio" class="text-slate-300 text-xs sm:text-sm italic mt-3 px-2 py-2 rounded-xl bg-navy-800/50 border border-gold/10">
+                    "Your ideal partner for selling, buying, and trading in cars"
+                </p>
+
+                <!-- Primary Action Buttons (Call, WhatsApp, Save VCF) -->
+                <div class="grid grid-cols-2 gap-3 mt-6">
+                    <a id="btn-save-vcf" href="javascript:void(0)" onclick="saveContactVCF()" class="col-span-2 gold-button font-bold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 text-sm sm:text-base shadow-md">
+                        <i class="fas fa-user-plus text-base"></i>
+                        <span>Save Contact</span>
+                    </a>
+                    <a id="btn-call" href="tel:+201003005598" class="bg-navy-800 hover:bg-navy-700 text-gold border border-gold/40 font-semibold py-3 px-3 rounded-xl flex items-center justify-center gap-2 text-sm transition">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>Call</span>
+                    </a>
+                    <a id="btn-whatsapp" href="https://wa.me/201003005598" target="_blank" class="bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-400 border border-emerald-500/30 font-semibold py-3 px-3 rounded-xl flex items-center justify-center gap-2 text-sm transition">
+                        <i class="fab fa-whatsapp text-lg"></i>
+                        <span>WhatsApp</span>
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Detailed Contact List -->
+            <div class="px-6 py-4 bg-navy-900/60 border-t border-b border-gold/10 space-y-3.5 text-sm">
+                
+                <!-- Phone Direct -->
+                <a href="tel:+201003005598" class="flex items-center gap-4 text-slate-200 hover:text-gold transition group p-1.5 rounded-lg hover:bg-navy-800/40">
+                    <div class="w-10 h-10 rounded-xl bg-navy-800 border border-gold/20 flex items-center justify-center text-gold group-hover:scale-105 transition">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-[10px] uppercase tracking-wider text-slate-400">Mobile / WhatsApp</p>
+                        <p id="disp-phone" class="font-medium text-sm truncate">+20 100 300 5598</p>
+                    </div>
+                    <i class="fas fa-chevron-right text-xs text-slate-600 group-hover:text-gold"></i>
+                </a>
+
+                <!-- Email -->
+                <a id="link-email" href="mailto:shadysabry4real@gmail.com" class="flex items-center gap-4 text-slate-200 hover:text-gold transition group p-1.5 rounded-lg hover:bg-navy-800/40">
+                    <div class="w-10 h-10 rounded-xl bg-navy-800 border border-gold/20 flex items-center justify-center text-gold group-hover:scale-105 transition">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-[10px] uppercase tracking-wider text-slate-400">Email Address</p>
+                        <p id="disp-email" class="font-medium text-sm truncate">shadysabry4real@gmail.com</p>
+                    </div>
+                    <i class="fas fa-chevron-right text-xs text-slate-600 group-hover:text-gold"></i>
+                </a>
+
+                <!-- Address / Location -->
+                <div class="flex items-center gap-4 text-slate-200 p-1.5">
+                    <div class="w-10 h-10 rounded-xl bg-navy-800 border border-gold/20 flex items-center justify-center text-gold">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-[10px] uppercase tracking-wider text-slate-400">Location</p>
+                        <p id="disp-address" class="font-medium text-sm truncate">El Shrouk City, Egypt</p>
+                    </div>
+                </div>
+
+                <!-- Facebook Profile -->
+                <a id="link-facebook" href="https://www.facebook.com/share/1MHStv9awy/" target="_blank" class="flex items-center gap-4 text-slate-200 hover:text-gold transition group p-1.5 rounded-lg hover:bg-navy-800/40">
+                    <div class="w-10 h-10 rounded-xl bg-navy-800 border border-gold/20 flex items-center justify-center text-blue-500 group-hover:scale-105 transition">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                        <p class="text-[10px] uppercase tracking-wider text-slate-400">Facebook Page</p>
+                        <p class="font-medium text-sm truncate">Hamza Motors Page</p>
+                    </div>
+                    <i class="fas fa-external-link-alt text-xs text-slate-600 group-hover:text-gold"></i>
+                </a>
+
+            </div>
+
+            <!-- Dynamic QR Code & Share Section -->
+            <div class="p-6 text-center bg-navy-900/90">
+                <p class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-3">Scan to Share Card</p>
+                
+                <div class="inline-block p-3 bg-white rounded-2xl shadow-xl border-2 border-gold/40 mb-4">
+                    <img id="qr-code-img" src="" alt="Business Card QR Code" class="w-32 h-32 mx-auto">
+                </div>
+
+                <div class="flex items-center justify-center gap-3">
+                    <button onclick="shareCard()" class="bg-navy-800 hover:bg-navy-700 text-slate-200 border border-gold/30 text-xs font-semibold py-2.5 px-4 rounded-xl flex items-center gap-2 transition">
+                        <i class="fas fa-share-alt text-gold"></i>
+                        <span>Share Card</span>
+                    </button>
+                    <button onclick="copyCardLink()" class="bg-navy-800 hover:bg-navy-700 text-slate-200 border border-gold/30 text-xs font-semibold py-2.5 px-4 rounded-xl flex items-center gap-2 transition">
+                        <i class="fas fa-link text-gold"></i>
+                        <span>Copy Link</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Footer Banner -->
+            <div class="py-3 bg-navy-900 border-t border-gold/10 text-center">
+                <p class="text-[11px] text-slate-500">© 2026 Hamza Motors. All Rights Reserved.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JavaScript Logic & Config Block -->
+    <script>
+        // -------------------------------------------------------------
+        // CLIENT CONFIGURATION OBJECT
+        // -------------------------------------------------------------
+        const CARD_CONFIG = {
+            name: "Shady Hamza",
+            title: "Car Dealership Manager",
+            company: "Hamza Motors",
+            phoneFormatted: "+20 100 300 5598",
+            phoneRaw: "+201003005598", // Full E.164 international format
+            phoneLocal: "01003005598",
+            whatsappRaw: "201003005598",
+            email: "shadysabry4real@gmail.com",
+            address: "El Shrouk City",
+            bio: "Your ideal partner for selling, buying, and trading in cars",
+            facebookUrl: "https://www.facebook.com/share/1MHStv9awy/",
+            // Option to hardcode public URL once published (e.g. "https://hamzamotors.com")
+            publicCardUrl: "" 
+        };
+
+        // Initialize Card on Load
+        window.addEventListener('DOMContentLoaded', () => {
+            initCardData();
+            generateQRCode();
+        });
+
+        function initCardData() {
+            document.getElementById('card-name').textContent = CARD_CONFIG.name;
+            document.getElementById('card-title').textContent = CARD_CONFIG.title;
+            document.getElementById('card-company').textContent = CARD_CONFIG.company;
+            document.getElementById('card-bio').textContent = `"${CARD_CONFIG.bio}"`;
+            
+            document.getElementById('disp-phone').textContent = CARD_CONFIG.phoneFormatted;
+            document.getElementById('disp-email').textContent = CARD_CONFIG.email;
+            document.getElementById('disp-address').textContent = CARD_CONFIG.address;
+            
+            document.getElementById('btn-call').href = `tel:${CARD_CONFIG.phoneRaw}`;
+            document.getElementById('btn-whatsapp').href = `https://wa.me/${CARD_CONFIG.whatsappRaw}`;
+            document.getElementById('link-email').href = `mailto:${CARD_CONFIG.email}`;
+            document.getElementById('link-facebook').href = CARD_CONFIG.facebookUrl;
+        }
+
+        // Generate VCF vCard File Dynamic Download
+        function saveContactVCF() {
+            const vcardData = 
+`BEGIN:VCARD
+VERSION:3.0
+FN:${CARD_CONFIG.name}
+ORG:${CARD_CONFIG.company}
+TITLE:${CARD_CONFIG.title}
+TEL;TYPE=CELL,VOICE:${CARD_CONFIG.phoneRaw}
+EMAIL;TYPE=INTERNET,PREF:${CARD_CONFIG.email}
+ADR;TYPE=WORK:;;${CARD_CONFIG.address};;;;
+NOTE:${CARD_CONFIG.bio}
+URL;TYPE=Facebook:${CARD_CONFIG.facebookUrl}
+END:VCARD`;
+
+            try {
+                const blob = new Blob([vcardData], { type: 'text/vcard;charset=utf-8;' });
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = `${CARD_CONFIG.name.replace(/\s+/g, '_')}_Hamza_Motors.vcf`;
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                showToast("Contact file downloaded!");
+            } catch (err) {
+                showToast("Error generating VCF contact file");
+            }
+        }
+
+        // Dynamic QR Code Generation
+        function generateQRCode() {
+            const targetUrl = CARD_CONFIG.publicCardUrl || window.location.href;
+            const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(targetUrl)}&color=080D17&bgcolor=FFFFFF`;
+            document.getElementById('qr-code-img').src = qrApiUrl;
+        }
+
+        // Web Share API with Fallback
+        async function shareCard() {
+            const shareData = {
+                title: `${CARD_CONFIG.name} - ${CARD_CONFIG.company}`,
+                text: `${CARD_CONFIG.name} | ${CARD_CONFIG.title} at ${CARD_CONFIG.company}`,
+                url: CARD_CONFIG.publicCardUrl || window.location.href
+            };
+
+            if (navigator.share) {
+                try {
+                    await navigator.share(shareData);
+                } catch (err) {
+                    if (err.name !== 'AbortError') {
+                        copyCardLink();
+                    }
+                }
+            } else {
+                copyCardLink();
+            }
+        }
+
+        // Copy Card Link using document.execCommand
+        function copyCardLink() {
+            const link = CARD_CONFIG.publicCardUrl || window.location.href;
+            const tempInput = document.createElement('input');
+            tempInput.value = link;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast("Card link copied to clipboard!");
+        }
+
+        // Custom Toast Message Function
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-msg');
+            toastMsg.textContent = message;
+            
+            toast.classList.remove('opacity-0', '-translate-y-20', 'pointer-events-none');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', '-translate-y-20', 'pointer-events-none');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
