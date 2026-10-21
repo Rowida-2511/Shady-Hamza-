@@ -292,8 +292,8 @@ END:VCARD`;
         }
 
         // Dynamic QR Code Generation
-        function generateQRCode() {
-            const targetUrl = CARD_CONFIG.publicCardUrl || window.location.href;
+        function generateQRCode() {publicCardUrl: "https://rowida-2511.github.io/Shady-Hamza-/"
+            const targetUrl = CARD_CONFIG.publicCardUrl 
             const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(targetUrl)}&color=080D17&bgcolor=FFFFFF`;
             document.getElementById('qr-code-img').src = qrApiUrl;
         }
